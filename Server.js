@@ -8,7 +8,16 @@ require('dotenv').config();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://backendw2pdf.onrender.com', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
